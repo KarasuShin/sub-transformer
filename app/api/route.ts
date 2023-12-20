@@ -1,6 +1,8 @@
 import type { NextRequest } from 'next/server'
 import { parse, stringify } from 'yaml'
 
+export const maxDuration = 60
+
 interface Profile {
   proxies: {
     name: string
