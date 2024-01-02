@@ -1,8 +1,6 @@
 import type { NextRequest } from 'next/server'
 import { parse, stringify } from 'yaml'
 
-export const maxDuration = 60
-
 interface Profile {
   proxies: {
     name: string
@@ -59,7 +57,8 @@ export async function GET(request: NextRequest) {
   const text = await res.text()
   const yaml = parse(text) as Profile
 
-  const { proxies } = yaml
+  const proxies = yaml.proxies.filter(i => i.name.includes('丨1x'))
+  yaml.proxies = proxies
 
   yaml['proxy-groups'] = [
     {
